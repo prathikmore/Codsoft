@@ -1,0 +1,35 @@
+tasks = []
+def show_menu():
+    print("\n1. Add Task\n2. View Tasks\n3. Mark Task Complete\n4. Delete Task\n5. Exit")
+def add_task():
+    title = input("Enter task: ")
+    tasks.append({"task": title, "done": False})
+def view_tasks():
+    for i, task in enumerate(tasks):
+        status = "✓" if task["done"] else "✗"
+        print(f"{i + 1}. {task['task']} [{status}]")
+def mark_done():
+    view_tasks()
+    index = int(input("Enter task number to mark as complete: ")) - 1
+    if 0 <= index < len(tasks):
+        tasks[index]["done"] = True
+def delete_task():
+    view_tasks()
+    index = int(input("Enter task number to delete: ")) - 1
+    if 0 <= index < len(tasks):
+        tasks.pop(index)
+while True:
+    show_menu()
+    choice = input("Choose an option: ")
+    if choice == '1':
+        add_task()
+    elif choice == '2':
+        view_tasks()
+    elif choice == '3':
+        mark_done()
+    elif choice == '4':
+        delete_task()
+    elif choice == '5':
+        break
+    else:
+        print("Invalid choice")
